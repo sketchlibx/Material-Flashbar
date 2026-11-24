@@ -1,6 +1,12 @@
 plugins {
     id 'com.android.library'
+    id 'maven-publish'
 }
+
+// JitPack supplies these project properties during its build:
+// -Pgroup=com.github.<owner> and -Pversion=<git-tag>.
+def jitpackBaseGroup = providers.gradleProperty('group').getOrElse('com.github.sketchlibx')
+def jitpackVersion = providers.gradleProperty('version').getOrElse('1.0.3')
 
 android {
     namespace 'com.material.flashbar'
@@ -15,8 +21,40 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
+
+    // Publish only the release AAR, with its sources, to JitPack/Maven.
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+        }
+    }
 }
 
 dependencies {
     api 'com.google.android.material:material:1.14.0'
+}
+
+// AGP creates the release SoftwareComponent after project evaluation.
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = "${jitpackBaseGroup}.${rootProject.name}"
+                artifactId = project.name
+                version = jitpackVersion
+
+                pom {
+                    name = 'SK SketchLibX Material Flashbar'
+                    description = 'A Java-first Material 3 in-app notification library with an optional Glass appearance.'
+                    licenses {
+                        license {
+                            name = 'MIT License'
+                            url = 'https://opensource.org/licenses/MIT'
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

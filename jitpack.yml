@@ -1,0 +1,3 @@
+# Android Gradle Plugin 9.x requires Java 17.
+jdk:
+  - openjdk17
