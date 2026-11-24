@@ -1,10 +1,6 @@
 # SK SketchLibX Material Flashbar
 
-A Java-first Android in-app notification library built with Material 3 Expressive components. It provides compact, animated feedback surfaces with Material You theme colours and an optional translucent Glass appearance.
-
-**Package:** `com.material.flashbar`  
-**Current version:** `1.0.3`  
-**Minimum Android version:** API 23 (Android 6.0)
+A Android in-app notification library built with Material 3 Expressive components. It provides compact, animated feedback surfaces with Material You theme colours and an optional translucent Glass appearance.
 
 ## Features
 
