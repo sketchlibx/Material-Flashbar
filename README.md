@@ -54,7 +54,7 @@ In your app module's `build.gradle`:
 
 ```groovy
 dependencies {
-    implementation 'com.github.sketchlibx.SK-SketchLibX-MaterialFlashbar:library:1.0.3'
+    implementation 'com.github.sketchlibx:Material-Flashbar:library:1.0.3'
 }
 ```
 
